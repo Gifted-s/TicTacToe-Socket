@@ -7,7 +7,9 @@ const server = http.createServer(app);
 const io = require('socket.io')(server, { cors: { origin: '*' } });
 app.use(cors());
 app.use(express.json());
-
+app.get('/', (req, res) => {
+  res.status(200).send({MESSAGE:"SERVER UP"})
+});
 io.on('connection', (socket) => {
   const playRoomMap = {};
   app.get('/check-room/:roomId', (req, res) => {
